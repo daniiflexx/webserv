@@ -23,6 +23,8 @@ Config::Config(const std::string& filename) {
         } else if (word == "route") {
             current_server->routes.push_back(Route());
             current_route = &current_server->routes.back();
+        }else if(word == "path") {
+            iss >> current_route->path;
         } else if (word == "host") {
             iss >> current_server->host;
         } else if (word == "port") {
@@ -75,6 +77,7 @@ void Config::printServer(const Server& server) {
 
 void Config::printRoute(const Route& route) {
     std::cout << "Route Information:" << std::endl;
+    std::cout << "Path: " << route.path << std::endl;
     std::cout << "Redirect: " << route.redirect << std::endl;
     std::cout << "Root: " << route.root << std::endl;
     std::cout << "Directory Listing: " << (route.directory_listing ? "on" : "off") << std::endl;
@@ -92,8 +95,10 @@ void Config::printAll() {
     std::cout << "Printing all server information:" << std::endl;
     for (std::vector<Server>::const_iterator it = servers.begin(); it != servers.end(); ++it) {
         printServer(*it);
+        std::cout << std::endl;
         for (std::vector<Route>::const_iterator rt = it->routes.begin(); rt != it->routes.end(); ++rt) {
             printRoute(*rt);
+            std::cout << std::endl;
         }
     }
 }

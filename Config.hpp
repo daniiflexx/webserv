@@ -9,6 +9,7 @@ class Config {
 
 private:
     struct Route {
+        std::string path;
         std::vector<std::string> accepted_methods;
         std::string redirect;
         std::string root;
