@@ -1,8 +1,8 @@
 NAME = webserv
 SRCS = Config.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CC = c++
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
